@@ -150,7 +150,8 @@ if(percent > 50){
 }
 var reqObj = {}; 
 //var baseUrl =  "https://first-alert-security.herokuapp.com";
-var baseUrl =  "http://192.168.1.39:3002";
+//var baseUrl =  "http://192.168.1.39:3002";
+var baseUrl =  "https://chatapp-hnmx.onrender.com";
 function dialogflowApiNew(text){
   //alert("test");
  // GetTheOffers();
