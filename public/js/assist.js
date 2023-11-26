@@ -214,7 +214,7 @@ setTimeout(function() {
    //alert(userObj.FirstName);
    reqObj.UserObj = userObj;
    //var fdata = JSON.stringify(reqObj);
-   //alert(JSON.stringify(reqObj));
+  // alert(JSON.stringify(reqObj));
              $.ajax({
      type: "POST",
      url: serverurl,
