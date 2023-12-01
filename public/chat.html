@@ -544,19 +544,16 @@ recognition.onresult = function (event) {
   for (const result of event.results) {
     // Print the transcription to the console
     trans=result[0].transcript;
-    //console.log(`${result[0].transcript}`);
-      appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
+    //0console.log(`${result[0].transcript}`);
+     
   }
-   //alert(event.results.length);
-  for (var i = event.resultIndex; i < event.results.length; ++i) {
-    if (event.results[i].isFinal) {
-     // alert(event.results[i][0].transcript);
-      trans = event.results[i][0].transcript;
-      //appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
-    }
-  }
+ 
   
 }
+recognition.onend = function () {
+    recognizing = false;
+     appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
+};
  
     // Handle recognition errors
     recognition.onerror = (event) => {
