@@ -321,13 +321,13 @@ web.processMessages();
      
     </div>
   </main>
-<div claiss="oval"  style="background-image: url(https://i.ibb.co/3s1f9Jq/default-wallpaper.png)">
+<!-- <div claiss="oval"  style="background-image: url(https://i.ibb.co/3s1f9Jq/default-wallpaper.png)">
    <ul>
     <li onclick="suggestion('Need a extra bed')";>Need a extra bed</li>
     <li onclick="suggestion('Make a call')";>Make a call</li>
     <li onclick="suggestion('Shopping')";>Show me Shopping options</li>
 </ul>
-</div>
+</div> -->
   <form class="msger-inputarea">
     <input type="text" class="msger-input" id="msgId" oninput="ToggleButton()" placeholder="Enter your message...">
     <button type="submit" id="sendId" style="background-color: #57A3D7;" class="msger-send-btn zmdi zmdi-mail-send">Send</button>
@@ -468,16 +468,6 @@ import spoken from '/spoken-master/build/spoken.js';
 ( async e => {
 'use strict';
 
-// Setup Listener Events
-spoken.listen.on.partial( transcript => { console.log(transcript)          } );
-spoken.listen.on.start(   voice      => { console.log('Started Listening') } );
-spoken.listen.on.end(     voice      => { dialogflowApiNew(transcript);
-  if(transcript!=undefined){
-  appendMessage(PERSON_NAME, PERSON_IMG, "right", transcript)       
-  }
- 
-} );
-spoken.listen.on.error(   voice      => { console.log('Error Listening')   } );
 
 // Speak with each English voice to sample your favorites
 console.log(await spoken.voices());
@@ -536,6 +526,52 @@ window.open('http://127.0.0.1:3002/ShopMap.html', 'windowName', 'width=1000, hei
  
  }
 
+</script>
+<script type="text/javascript">
+  // Check if the Speech Recognition API is supported in the browser
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+
+    // Configure recognition settings
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-GB';
+
+    // Handle recognition results
+    recognition.onresult = (event) => {
+        const result = event.results[event.results.length - 1];
+        const transcript = result[0].transcript;
+        outputText.textContent = transcript;
+        if(transcript!=undefined){
+         dialogflowApiNew(transcript);
+         appendMessage(PERSON_NAME, PERSON_IMG, "right", transcript);
+        }
+        for (const result of event.results) {
+    // Print the transcription to the console
+    console.log(`${result[0].transcript}`);
+  }
+           
+    };
+
+    // Handle recognition errors
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+    };
+
+    // Start recognition when the button is clicked
+    micId.addEventListener('click', () => {
+        recognition.start();
+        
+    });
+
+    // Re-enable the button when recognition ends
+    recognition.onend = () => {
+      //  startButton.disabled = false;
+    };
+} else {
+    outputText.textContent = "Speech recognition not supported in this browser.";
+}
 </script>
 <!-- <script src="/assets/js/camera.js"></script> -->
 </html>
