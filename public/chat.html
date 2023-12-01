@@ -541,7 +541,7 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   
     // Handle recognition results
 recognition.onresult = function (event) {
-   alert(event.results.length);
+   //alert(event.results.length);
   for (var i = event.resultIndex; i < event.results.length; ++i) {
     if (event.results[i].isFinal) {
      // alert(event.results[i][0].transcript);
