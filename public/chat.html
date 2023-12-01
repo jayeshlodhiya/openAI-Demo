@@ -541,12 +541,18 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   
     // Handle recognition results
 recognition.onresult = function (event) {
+  for (const result of event.results) {
+    // Print the transcription to the console
+    trans=result[0].transcript;
+    //console.log(`${result[0].transcript}`);
+      appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
+  }
    //alert(event.results.length);
   for (var i = event.resultIndex; i < event.results.length; ++i) {
     if (event.results[i].isFinal) {
      // alert(event.results[i][0].transcript);
       trans = event.results[i][0].transcript;
-      appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
+      //appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
     }
   }
   
