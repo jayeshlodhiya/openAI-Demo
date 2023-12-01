@@ -557,6 +557,7 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     // Handle recognition errors
     recognition.onerror = (event) => {
         console.error('Speech recognition error:', event.error);
+        appendMessage(PERSON_NAME, PERSON_IMG, "right", transcript);
     };
 
     // Start recognition when the button is clicked
