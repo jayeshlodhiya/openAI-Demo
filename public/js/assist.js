@@ -153,7 +153,7 @@ var reqObj = {};
 //var baseUrl =  "http://192.168.1.39:3002";
 var baseUrl =  "https://chatapp-hnmx.onrender.com";
 function dialogflowApiNew(text){
-  alert(text);
+ // alert(text);
  // GetTheOffers();
  // appendMessage(BOT_NAME, BOT_IMG, "left", speech);
  if(text=='Please show me Architecture of IBE'){

@@ -250,10 +250,7 @@ body {
 
   <section class="msger">
   <header class="msger-header">
-    <nav class="navbar navbar-light " style="background-color: #57A3D7;">
-  <span class="navbar-text" style="color:  #ffffff;">
-   <center><b> Service at your Finger tips!</b></center>
-  </span>
+   
 </nav>
 <!--  <iframe class=".msger-chat" id="frame" src="/avtar.html" width="100%" height="300">
      </iframe>    -->
@@ -275,8 +272,8 @@ web.processMessages();
 </script> -->
 
        
- <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1444641484/csuih0up4xp2uirqvige.png" id="slientId" width="390px" height="150px"> 
-  <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1444641484/csuih0up4xp2uirqvige.png" id="talkId" width="390px" height="150px">  
+ <img src="/img/ai_stop.gif" id="slientId" width="390px" height="250px"> 
+  <img src="https://i.pinimg.com/originals/e5/d6/8b/e5d68b4c0923839b89fefb727afb9742.gif" id="talkId" width="390px" height="250px">  
 
 <!-- <video width="320" height="240" controls autoplay loop>
   <source src="assets/media/annie.mp4" type="video/mp4">
@@ -553,6 +550,7 @@ recognition.onresult = function (event) {
 recognition.onspeechend  = function () {
     recognizing = false;
      appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
+    dialogflowApiNew(msgText);
 };
  
     // Handle recognition errors
