@@ -530,7 +530,7 @@ window.open('http://127.0.0.1:3002/ShopMap.html', 'windowName', 'width=1000, hei
 <script type="text/javascript">
   // Check if the Speech Recognition API is supported in the browser
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =  window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
     // Configure recognition settings
@@ -539,23 +539,19 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     recognition.lang = 'en-GB';
 
     // Handle recognition results
-    recognition.onresult = (event) => {
-        const result = event.results[event.results.length - 1];
-        const transcript = result[0].transcript;
-        outputText.textContent = transcript;
-        if(transcript!=undefined){
-         dialogflowApiNew(transcript);
-         appendMessage(PERSON_NAME, PERSON_IMG, "right", transcript);
-        }
-        for (const result of event.results) {
-    // Print the transcription to the console
-    console.log(`${result[0].transcript}`);
+recognition.onresult = function (event) {
+   alert(event.results.length);
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+     // alert(event.results[i][0].transcript);
+       appendMessage(PERSON_NAME, PERSON_IMG, "right", event.results[i][0].transcript);
+    }
   }
-           
-    };
+}
 
     // Handle recognition errors
     recognition.onerror = (event) => {
+       console.log(event);
         console.error('Speech recognition error:', event.error);
         appendMessage(PERSON_NAME, PERSON_IMG, "right", transcript);
     };
