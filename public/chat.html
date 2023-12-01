@@ -550,7 +550,7 @@ recognition.onresult = function (event) {
  
   
 }
-recognition.onend = function () {
+recognition.onspeechend  = function () {
     recognizing = false;
      appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
 };
