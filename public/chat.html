@@ -528,6 +528,7 @@ window.open('http://127.0.0.1:3002/ShopMap.html', 'windowName', 'width=1000, hei
 
 </script>
 <script type="text/javascript">
+  var trans;
   // Check if the Speech Recognition API is supported in the browser
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     const SpeechRecognition =  window.webkitSpeechRecognition;
@@ -537,16 +538,18 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'en-GB';
-
+  
     // Handle recognition results
 recognition.onresult = function (event) {
    alert(event.results.length);
   for (var i = event.resultIndex; i < event.results.length; ++i) {
     if (event.results[i].isFinal) {
      // alert(event.results[i][0].transcript);
-       appendMessage(PERSON_NAME, PERSON_IMG, "right", event.results[i][0].transcript);
+      trans = event.results[i][0].transcript;
+      
     }
   }
+   appendMessage(PERSON_NAME, PERSON_IMG, "right", trans);
 }
 
     // Handle recognition errors
